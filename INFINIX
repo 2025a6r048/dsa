@@ -1,0 +1,104 @@
+#include<stdio.h>
+#include<ctype.h>
+#include<string.h>
+#include<math.h>
+int operand[100];
+char operator[100];
+int top1 =-1, top2 = -1;
+int precedence(char op){
+    switch(op){
+        case '+':
+        case '-':
+        return 1;
+        case '*':
+        case'/':
+        return 2;
+        case '^':
+        return 3;
+        default:
+        return 0;
+    }
+}
+void doProcess(){
+    int x = operand[top1--];  
+    int y = operand[top1--];
+    char op = operator[top2--];
+    int z;
+    switch(op){
+        case '+':
+            z = y + x;  
+            break;
+        case '-':
+            z = y - x;
+            break;
+        case '*':
+            z = y * x;
+            break;
+        case '/':
+            z = y / x;
+            break;
+        case '^':
+            z = (int) pow(y, x);  // int is used for double spec
+            break;
+    }
+    operand[++top1] = z;
+}
+int evalInfixExpression(char* exp){   // pointer will be passed 
+    for(int i=0; i<strlen(exp); i++){
+        char ch = exp[i];   // nickname
+        if(isdigit(ch)){
+           int num = 0;
+           while(isdigit(exp[i])){  // for multiple digits
+                num = num * 10 + exp[i] - '0';
+                i++;
+           }
+           i--;
+           operand[++top1] = num;
+        }
+        else if(ch=='+' || ch=='-' || ch=='*' || ch=='/' || ch==
+            if(top2 == -1)
+                operator[++top2] = ch;
+            else{
+                while(top2 != -1 && precedence(ch)<precedence(op
+                    doProcess();
+                }
+                operator[++top2] = ch;
+            }
+        }
+        else if(ch=='('){
+            operator[++top2] = ch;
+        }
+        else if(ch==')'){
+            while(operator[top2] != '('){
+                doProcess();
+
+
+            }
+            top2--;
+        }
+    }
+    while(top2 != -1){
+        doProcess();
+    }
+    return operand[top1--];
+}
+int evalPostflixExpression(char*exp){
+    for(int i=0 ;i<strlen; i++){
+        if(isdigit(exp[i])){
+            int num = 0;
+            while(isdigit(exp[i]-'0'));
+            num = num *10 + (exp[i]-'0');
+            i++;
+            operand[++top1] = num;
+        }
+    }
+}
+int main (){
+    char expr[100];
+    printf("Infix Expression:");
+    gets(expr);
+    int result = evalInfixExpression(expr);
+    printf("Result of Expression %s = %d\n", expr, result);
+    return 0;
+}
+
