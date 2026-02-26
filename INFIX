@@ -1,4 +1,5 @@
-#include<stdio.h>
+
+           #include<stdio.h>
 #include<ctype.h>
 #include<string.h>
 #include<math.h>
@@ -38,28 +39,28 @@ void doProcess(){
             z = y / x;
             break;
         case '^':
-            z = (int) pow(y, x);  // int is used for double spec
+            z = (int) pow(y, x);  
             break;
     }
     operand[++top1] = z;
 }
-int evalInfixExpression(char* exp){   // pointer will be passed 
+int evalInfixExpression(char* exp){   
     for(int i=0; i<strlen(exp); i++){
-        char ch = exp[i];   // nickname
+        char ch = exp[i];  
         if(isdigit(ch)){
            int num = 0;
-           while(isdigit(exp[i])){  // for multiple digits
+           while(isdigit(exp[i])){  
                 num = num * 10 + exp[i] - '0';
                 i++;
            }
            i--;
            operand[++top1] = num;
         }
-        else if(ch=='+' || ch=='-' || ch=='*' || ch=='/' || ch==
+        else if(ch=='+' || ch=='-' || ch=='*' || ch=='/' || ch=='^'
             if(top2 == -1)
                 operator[++top2] = ch;
             else{
-                while(top2 != -1 && precedence(ch)<precedence(op
+                while(top2 != -1 && precedence(ch)<precedence(opera
                     doProcess();
                 }
                 operator[++top2] = ch;
@@ -101,4 +102,5 @@ int main (){
     printf("Result of Expression %s = %d\n", expr, result);
     return 0;
 }
+
 
