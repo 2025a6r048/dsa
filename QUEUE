@@ -25,3 +25,55 @@ int dequeue(){
     if(isEmpty()){
         printf("\nQueue Underflow!!!\n");
         return -1;
+}
+int val=queue[front++];
+    if(front>rear)
+        front = rear =-1;
+    return val;
+}
+int peek(){
+if(isEmpty()){
+    printf("Queue Underflow!!!\n");
+}
+}
+void display(){
+if(isEmpty()){
+   printf("Queue is Empty!!!\n");
+   return;  
+}
+for(int i=front; i<=rear; i++){
+printf("%d", queue[i]);}
+}
+int main(){
+    int choice,value;
+    while(1){
+        printf("1.Enqueue\n");
+        printf("2.Dequeue\n");
+        printf("3.Peek\n");
+        printf("4.Display\n");
+        printf("5.Exit\n");
+        printf("Enter Choice: ");
+        scanf("%d",&choice);
+        switch(choice){
+            case 1:
+            scanf("%d", &value);
+            enqueue(value);
+            break;
+            value =dequeue();
+            if(value != -1)
+            printf()
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+                default:
+                printf("Invalid Choice !!!\n);
+                }
+    }
+        return 0;
+                }
