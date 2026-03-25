@@ -22,7 +22,7 @@ void inesrtNodeInbeg(int data){
   printf("Node inserted !!!\n");
 }
 void inesrtNodeAtEnd(int data){
-    struct Node * newNode = createnode(data);
+    struct Node * newNode = createNode(data);
     if(head == NULL){
             head = newNode;
     }
@@ -34,6 +34,32 @@ void inesrtNodeAtEnd(int data){
         temp ->next = newNode;
     }
     printf("Node inserted !!!\n");
+}
+void inesrtNodeAtAnyPos(int data, int pos){ // here position is 0-base
+    if(head == NULL){
+        printf("List is empty !!!\n");
+    }
+    else if(pos == 0){
+        insertNodeInBeg(data);
+    }
+    else{
+        struct Node* temp = head;
+        int i=0;
+        while(temp != NULL)
+        if(i == pos-1)
+        break;
+        temp = temp->next;
+        i++;
+        if(temp == NULL || temp ==NULL){
+            printf("Invalid position!!!\n");
+        }
+        else{
+            struct Node* newNode = createNode(data);
+            newNode->next = temp->next;
+            temp->next = newNode;
+            printf("Node Inserted !!!\n");
+         }
+     }
 }
 void displayList(){
     if(head == NULL)
