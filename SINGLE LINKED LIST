@@ -2,16 +2,15 @@
 #include<stdlib.h>
 struct Node{
     int data;
-    struct Node* next;   
-};
+    struct Node* next;  };
 struct Node* head = NULL;
 struct Node* createnode(int data){
     struct Node* temp = (struct Node*)malloc(sizeof(struct Node)); 
-    temp->data = data;
+    temp->data = data;  
     temp->next = NULL;
-    return temp;  
+    return temp;    
 }
-void inesrtinbeg(int data){
+void inesrtNodeInbeg(int data){
     struct Node* newnode = createnode(data);
     if(head == NULL){
         head == newnode;
@@ -20,6 +19,33 @@ void inesrtinbeg(int data){
         newnode->next = head;
         head = newnode;
     }
+  printf("Node inserted !!!\n");
+}
+void inesrtNodeAtEnd(int data){
+    struct Node * newNode = createNode(data);
+    if(head == NULL){
+            head = newNode;
+    }
+    else{
+        struct Node* temp = head;
+        while(temp ->next != NULL){
+            temp = temp->NEXT
+        }
+        temp ->next = newNode;
+    }
+    printf("Node inserted !!!\n");
+}
+void displayList(){
+    if(head == NULL)
+    printf("List is empty !!!\n");
+else{
+    struct Node* temp = head;
+    while(temp != NULL){
+        printf("%d", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
 }
 int main (){
      while(1){
@@ -65,7 +91,7 @@ int main (){
                 
                 break;
             case 7:
-                
+                displayList();
                 break;
             case 8:
 
