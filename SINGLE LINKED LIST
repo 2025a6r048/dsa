@@ -2,76 +2,77 @@
 #include<stdlib.h>
 struct Node{
     int data;
-    struct Node* next;  };
+    struct Node* next;    // link between elements(logical).
+};
 struct Node* head = NULL;
 struct Node* createnode(int data){
-    struct Node* temp = (struct Node*)malloc(sizeof(struct Node)); 
-    temp->data = data;  
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node));  // node created and address of node stored in temp.
+    temp->data = data;  // stores data in node.
     temp->next = NULL;
-    return temp;    
+    return temp;     // returns the address.
 }
-void inesrtNodeInbeg(int data){
+void inesrtinbeg(int data){
     struct Node* newnode = createnode(data);
     if(head == NULL){
-        head == newnode;
+        head = newnode;
     }
     else{
         newnode->next = head;
         head = newnode;
     }
-  printf("Node inserted !!!\n");
 }
-void inesrtNodeAtEnd(int data){
-    struct Node * newNode = createNode(data);
+void insertatend(int data){
+    struct Node* newnode = createnode(data);
     if(head == NULL){
-            head = newNode;
+        head == newnode;
     }
     else{
         struct Node* temp = head;
-        while(temp ->next != NULL){
+        while(temp->next != NULL){
             temp = temp->next;
         }
-        temp ->next = newNode;
+        temp->next = newnode;
     }
     printf("Node inserted !!!\n");
 }
-void inesrtNodeAtAnyPos(int data, int pos){ // here position is 0-base
+void insertatanypos(int data, int pos){   // here position is 0-base.
     if(head == NULL){
-        printf("List is empty !!!\n");
+        printf("List is Empty !!!\n");
     }
     else if(pos == 0){
-        insertNodeInBeg(data);
+        inesrtinbeg(data);
     }
     else{
         struct Node* temp = head;
         int i=0;
-        while(temp != NULL)
-        if(i == pos-1)
-        break;
-        temp = temp->next;
-        i++;
-        if(temp == NULL || temp ==NULL){
-            printf("Invalid position!!!\n");
+        while(temp != NULL){
+            if(i == pos-1)      // traverse until the previous node of the position is reached.
+                break;
+            temp = temp->next;
+            i++;
+        }
+        if(temp == NULL || temp->next == NULL){
+            printf("Invalid position !!!\n");
         }
         else{
-            struct Node* newNode = createNode(data);
-            newNode->next = temp->next;
-            temp->next = newNode;
+            struct Node* newnode = createnode(data);
+            newnode->next = temp->next;
+            temp->next = newnode;
             printf("Node Inserted !!!\n");
-         }
-     }
-}
-void displayList(){
-    if(head == NULL)
-    printf("List is empty !!!\n");
-else{
-    struct Node* temp = head;
-    while(temp != NULL){
-        printf("%d", temp->data);
-        temp = temp->next;
+        }
     }
-    printf("\n");
 }
+void displaylist(){
+    if(head == NULL)
+        printf("List is Empty!!!\n");
+    else{
+        struct Node* temp = head;
+        while(temp != NULL){
+            printf("%d ", temp->data);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
 }
 int main (){
      while(1){
@@ -92,18 +93,19 @@ int main (){
             case 1:
                 printf("Enter data:");
                 scanf("%d", &data);
-                
+                inesrtinbeg(data);
                 break;
             case 2:
                 printf("Enter data:");
                 scanf("%d", &data);
-                
+                insertatend(data);
                 break;
             case 3:
                 printf("Enter position:");
+                printf("Enter data:");
                 scanf("%d", &pos);
                 scanf("%d", &data);
-                
+                insertatanypos(data,pos);
                 break;
             case 4:
                 
@@ -117,7 +119,7 @@ int main (){
                 
                 break;
             case 7:
-                displayList();
+                displaylist();
                 break;
             case 8:
 
