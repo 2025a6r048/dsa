@@ -62,6 +62,66 @@ void insertatanypos(int data, int pos){   // here position is 0-base.
         }
     }
 }
+void deleteNodeFromBeg(){
+    if(head == NULL)
+        printf("List is Empty!!!\n");
+    else{
+        head = head->next;
+        printf("Node Deleted !!!\n");
+    }
+}
+void deleteNodeFromEnd(){
+    if(head == NULL)
+    printf("List is Empty !!!\n");
+    else if(head->next == NULL){//ONLY SINGLE NODE
+        head = NULL;
+}
+else{
+    struct Node* temp = head;
+    while(temp->next->next != NULL){
+        temp = temp->next;
+    }
+    temp->next = NULL;
+    printf("Node deleted !!\n");
+  }
+}
+void deleteNodeFromAnyPos(int pos){ // Here position is 0 base
+     if(head == NULL)
+    printf("List is Empty !!!\n");
+else if(pos == 0)
+    deleteNodeFromBeg();
+else{
+    struct Node* temp = head;
+    int i = 0;
+    while(temp != NULL){
+        if(i == pos-1)
+        break;
+        temp = temp->next;
+        i++;
+    }
+    if(temp == NULL || temp ->next == NULL)
+    printf("Invalid position !!!\n");
+    else{
+        temp->next = temp->next->next;
+        printf("Node deleted !!!\n");
+    }
+}
+}
+void search(int value){
+    if(head == NULL)
+    printf("List is Empty !!!\n");
+else{
+    struct Node* temp = head;
+    while(temp != NULL){
+        if(temp->data == value){
+        printf("Found!!!\n");
+        return;
+        }
+        temp = temp->next;
+    }
+    printf("Not Found !!!\n");
+}
+}
 void displaylist(){
     if(head == NULL)
         printf("List is Empty!!!\n");
@@ -75,7 +135,7 @@ void displaylist(){
     }
 }
 int main (){
-     while(1){
+while(1){
         printf("***Singly Linked List***\n");
         printf("1.Insert in Beginning\n");
         printf("2.Insert At End\n");
@@ -86,7 +146,7 @@ int main (){
         printf("7.Display List\n");
         printf("8.Search Element In List\n");
         printf("9.Exit\n");
-        int choice, data, pos;
+        int choice, data, pos,value;
         printf("Enter Choice:");
         scanf("%d", &choice);
         switch(choice){
@@ -108,21 +168,22 @@ int main (){
                 insertatanypos(data,pos);
                 break;
             case 4:
-                
+                deleteNodeFromBeg();
                 break;
             case 5:
-                
+                 deleteNodeFromEnd();
                 break;
             case 6:
                 printf("Enter position:");
                 scanf("%d", &pos);
-                
+                deleteNodeFromAnyPos(pos);
                 break;
             case 7:
                 displaylist();
                 break;
             case 8:
-
+                scanf("%d", &value);
+               search(value);
                 break;
             case 9:
                exit(0);
